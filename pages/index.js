@@ -8,6 +8,7 @@ import TableOfContents from '../components/table-of-contents'
 import CodeBlock from '../components/codeblock'
 import fs from 'fs'
 //import Sidebar from '../components/sidebar'
+import path from 'path'
 
 export default function Home({text}) {
   const H1 = ({ node, ...props }) => {
@@ -75,8 +76,9 @@ export default function Home({text}) {
 }
 
 export const getStaticProps = async () => {
-  const text = fs.readFileSync('markdown/blocking-circuit.md', 'utf8');
-  //console.log(text)
+  const filename = 'blocking-circuit';
+  //const text = fs.readFileSync('markdown/blocking-circuit.md', 'utf8');
+  const text = fs.readFileSync(path.join(process.cwd(),'..','blog_draft',`${filename}.md`),'utf8');
 
   return {
     props: {

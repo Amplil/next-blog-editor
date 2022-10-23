@@ -1,4 +1,7 @@
 import ReactMarkdown from 'react-markdown'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
+import 'katex/dist/katex.min.css'
 export default function TableOfContents({ body }){
   const ankerLink =(h_num) => {
     let num=0;
@@ -16,6 +19,8 @@ export default function TableOfContents({ body }){
     <ul>
       <div className=" bg-gray-200">目次</div>
       <ReactMarkdown
+      rehypePlugins={[rehypeKatex]}
+      remarkPlugins={[remarkMath]}
       allowedElements={["h1","h2","h3","h4","h5","h6"]}
       components={{
           h1: ankerLink(1),
