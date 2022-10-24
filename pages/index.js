@@ -10,7 +10,7 @@ import fs from 'fs'
 //import Sidebar from '../components/sidebar'
 import path from 'path'
 
-export default function Home({text}) {
+export default function Home({ text }) {
   const H1 = ({ node, ...props }) => {
     return (
       <h1 id={node.position?.start.line.toString()}>{props.children}</h1>
@@ -47,27 +47,28 @@ export default function Home({text}) {
       <div className="bg-[#f5f6f6] lg:pl-20 lg:pr-20 lg:pt-10 pb-10 lg:pb-28 lg:flex">
         <div className="w-auto bg-white lg:w-2/3 pl-8 pr-8">
           <div className="lg:hidden w-auto p-5">
-            <TableOfContents body={text}/>
+            <TableOfContents body={text} />
           </div>
           <div className="markdown">
             <ReactMarkdown
-            rehypePlugins={[rehypeKatex]}
-            remarkPlugins={[remarkMath]}
-            components={{
-              h1: H1,
-              h2: H2,
-              h3: H3,
-              h4: H4,
-              h5: H5,
-              h6: H6,
-              code: CodeBlock}}>
-                {text}
+              rehypePlugins={[rehypeKatex]}
+              remarkPlugins={[remarkMath]}
+              components={{
+                h1: H1,
+                h2: H2,
+                h3: H3,
+                h4: H4,
+                h5: H5,
+                h6: H6,
+                code: CodeBlock
+              }}>
+              {text}
             </ReactMarkdown>
           </div>
         </div>
         <div className="hidden w-64 pl-5 pr-5 lg:block">
           <div className="fixed">
-            <TableOfContents body={text}/>
+            <TableOfContents body={text} />
           </div>
         </div>
       </div>
@@ -77,8 +78,9 @@ export default function Home({text}) {
 
 export const getStaticProps = async () => {
   const filename = 'blocking-circuit';
-  //const text = fs.readFileSync('markdown/blocking-circuit.md', 'utf8');
-  const text = fs.readFileSync(path.join(process.cwd(),'..','blog_draft',`${filename}.md`),'utf8');
+  const text = fs.readFileSync('README.md', 'utf8');
+  //const text = fs.readFileSync(path.join(process.cwd(),'..','blog_draft',`${filename}.md`),'utf8');
+  //const text = fs.readFileSync(path.join(process.cwd(),'pages',`${filename}.md`),'utf8');
 
   return {
     props: {
